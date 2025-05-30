@@ -3,399 +3,682 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Website</title>
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        header {
-            background-color: #2c3e50;
-            color: #fff;
-            padding: 2rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #3498db;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 5rem 0;
-            text-align: center;
-            background-color: #3498db;
-            color: white;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #2c3e50;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            font-weight: bold;
-        }
-        
-        .btn:hover {
-            background-color: #1a252f;
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 5rem 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .features-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-        
-        .feature {
-            flex: 1 1 300px;
-            background-color: #f8f9fa;
-            padding: 2rem;
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
         
-        .feature:hover {
-            transform: translateY(-5px);
+        /* Animation for cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .feature h3 {
-            margin-bottom: 1rem;
-            color: #2c3e50;
+        .animate-card {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
         }
         
-        /* About Section */
-        .about {
-            padding: 5rem 0;
-            background-color: #f8f9fa;
+        /* Gradient background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         
-        .about-content {
+        /* Active tab indicator */
+        .tab-indicator {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: rgb(74, 89, 70);
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
+        }
+        
+        .active-tab .tab-indicator {
+            transform: scaleY(1);
+        }
+        
+        /* Profile image styling */
+        .profile-img {
+            border: 4px solid white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Timeline styling */
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 32px;
+            height: calc(100% - 32px);
+            width: 2px;
+            background: #e5e7eb;
+        }
+        
+        /* Award badge */
+        .award-badge {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background: #f59e0b;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .about-text {
-            flex: 1 1 500px;
-        }
-        
-        .about-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #2c3e50;
-        }
-        
-        .about-image {
-            flex: 1 1 400px;
-            height: 300px;
-            background-color: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background-color: white;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        textarea.form-control {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background-color: #2980b9;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-        .social-links {
-            margin-top: 1rem;
-            display: flex;
             justify-content: center;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: #3498db;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .feature {
-                flex: 0 0 100%;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-image {
-                order: -1;
-            }
+            font-size: 12px;
         }
     </style>
 </head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Your Name</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Welcome to My GitHub Page</h1>
-            <p>This is a beautiful, responsive website template that you can easily customize and host on GitHub Pages.</p>
-            <a href="#features" class="btn">Learn More</a>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">What I Offer</h2>
-            <div class="features-container">
-                <div class="feature">
-                    <h3>Web Development</h3>
-                    <p>Create beautiful responsive websites that work across all devices. Leverage modern technologies to build powerful web applications.</p>
-                </div>
-                <div class="feature">
-                    <h3>UI/UX Design</h3>
-                    <p>Design intuitive and engaging user experiences. Create interfaces that are not only beautiful but also functional and user-friendly.</p>
-                </div>
-                <div class="feature">
-                    <h3>Content Creation</h3>
-                    <p>Develop engaging content that resonates with your audience. From blog posts to social media content, make your message count.</p>
+<body class="gradient-bg min-h-screen flex">
+    <!-- Sidebar Navigation -->
+    <div class="w-72 bg-white shadow-lg flex-shrink-0">
+        <div class="p-6 flex flex-col items-center">
+            <img src="./images/logo_vasu.png" alt="Profile" class="profile-img w-24 h-24 rounded-full mb-4">
+            <h1 class="text-2xl font-bold text-[rgb(74,89,70)]">Vasu Sharma</h1>
+            <p class="text-gray-500 text-sm">Senior Controls Engineer | AI Enthusiast</p>
+            
+            <div class="flex space-x-4 mt-4">
+                <a href="#" class="text-gray-400 hover:text-[rgb(74,89,70)]"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-pink-600"><i class="fab fa-dribbble"></i></a>
+            </div>
+            
+            <div class="w-full mt-6 pt-6 border-t border-gray-200">
+                <div class="flex justify-between text-sm">
+                    <div class="text-center">
+                        <p class="font-bold text-gray-800">5+</p>
+                        <p class="text-gray-500">Years Exp</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold text-gray-800">42+</p>
+                        <p class="text-gray-500">Projects</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold text-gray-800">8</p>
+                        <p class="text-gray-500">Awards</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>Hello! I'm a passionate developer/designer who loves creating beautiful digital experiences. With several years of experience in the field, I specialize in building modern websites and applications.</p>
-                    <p>My goal is to help businesses and individuals establish a strong online presence through thoughtful design and robust development practices.</p>
-                    <p>When I'm not coding, you can find me hiking, reading, or experimenting with new technologies.</p>
+        
+        <nav class="mt-6">
+            <div class="relative">
+                <div class="tab-indicator"></div>
+                <button onclick="showTab('about')" class="tab-button active-tab w-full text-left py-3 px-6 flex items-center text-[rgb(74,89,70)] font-medium hover:bg-[rgb(218,228,216)] transition-colors">
+                    <i class="fas fa-user mr-3"></i> About Me
+                </button>
+            </div>
+            
+            <div class="relative">
+                <div class="tab-indicator"></div>
+                <button onclick="showTab('experience')" class="tab-button w-full text-left py-3 px-6 flex items-center text-gray-600 hover:text-[rgb(74,89,70)] hover:bg-[rgb(218,228,216)] transition-colors">
+                    <i class="fas fa-briefcase mr-3"></i> Experience
+                </button>
+            </div>
+            
+            <div class="relative">
+                <div class="tab-indicator"></div>
+                <button onclick="showTab('awards')" class="tab-button w-full text-left py-3 px-6 flex items-center text-gray-600 hover:text-[rgb(74,89,70)] hover:bg-[rgb(218,228,216)] transition-colors">
+                    <i class="fas fa-trophy mr-3"></i> Awards
+                </button>
+            </div>
+            
+            <div class="relative">
+                <div class="tab-indicator"></div>
+                <button onclick="showTab('projects')" class="tab-button w-full text-left py-3 px-6 flex items-center text-gray-600 hover:text-[rgb(74,89,70)] hover:bg-[rgb(218,228,216)] transition-colors">
+                    <i class="fas fa-code mr-3"></i> Projects
+                </button>
+            </div>
+            
+            <div class="relative">
+                <div class="tab-indicator"></div>
+                <button onclick="showTab('contact')" class="tab-button w-full text-left py-3 px-6 flex items-center text-gray-600 hover:text-[rgb(74,89,70)] hover:bg-[rgb(218,228,216)] transition-colors">
+                    <i class="fas fa-envelope mr-3"></i> Contact
+                </button>
+            </div>
+        </nav>
+        
+    </div>
+    
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-y-auto">
+        <div class="max-w-6xl mx-auto">
+            <!-- About Me Tab -->
+            <div id="about" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-card">
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">About Me</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="md:col-span-2">
+                                <p class="text-gray-600 mb-6 leading-relaxed">
+                                    Hello! I'm Vasu Sharma. I breathe and discover.
+                                </p>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 mb-2">Skills</h3>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-[rgb(74,89,70)] mr-2"></i>
+                                                <span class="text-gray-600">Machine Learning essentials including PyTorch, Tensorflow, Scikit-Learn</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-[rgb(74,89,70)] mr-2"></i>
+                                                <span class="text-gray-600">Reinforcement Learning essentials including Gym, Raylib, TRL</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-[rgb(74,89,70)] mr-2"></i>
+                                                <span class="text-gray-600">Large Language Model essentials including Huggingface, Flash-Attention</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-[rgb(74,89,70)] mr-2"></i>
+                                                <span class="text-gray-600">Other software skills including Git, Docker, AWS, WandB</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 mb-2">Languages</h3>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-[rgb(74,89,70)] mr-2"></i>
+                                                <span class="text-gray-600">English (Fluent)</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-[rgb(74,89,70)] mr-2"></i>
+                                                <span class="text-gray-600">German (Advanced)</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-[rgb(74,89,70)] mr-2"></i>
+                                                <span class="text-gray-600">Hindi (Fluent)</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-[rgb(218,228,216)] rounded-lg p-6">
+                                <h3 class="font-bold text-[rgb(74,89,70)] mb-4">Personal Info</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-map-marker-alt text-[rgb(74,89,70)] mt-1 mr-3"></i>
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Location</p>
+                                            <p class="text-gray-800">Aachen, DE</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-envelope text-[rgb(74,89,70)] mt-1 mr-3"></i>
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Email</p>
+                                            <p class="text-gray-800">vasu.sharma@rwth-aachen.com</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-phone text-[rgb(74,89,70)] mt-1 mr-3"></i>
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Phone</p>
+                                            <p class="text-gray-800">-</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-calendar-alt text-[rgb(74,89,70)] mt-1 mr-3"></i>
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Birthday</p>
+                                            <p class="text-gray-800">-</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <!-- Replace with your actual image -->
-                    <img src="/api/placeholder/400/300" alt="About Me" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            
+            <!-- Experience Tab -->
+            <div id="experience" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-card">
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Recent Experience</h2>
+                        
+                        <div class="space-y-8">
+                            <!-- Experience 1 -->
+                            <div class="timeline-item relative pl-16">
+                                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center">
+                                    <i class="fas fa-briefcase text-[rgb(74,89,70)]"></i>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-5">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h3 class="font-bold text-gray-800">AI Researcher</h3>
+                                            <p class="text-[rgb(74,89,70)]">Tabularis.AI</p>
+                                        </div>
+                                        <span class="bg-[rgb(218,228,216)] text-[rgb(74,89,70)] text-xs px-2 py-1 rounded-full">2025 - Present</span>
+                                    </div>
+                                    <p class="text-gray-600 mt-2">
+                                        Contrastive Representation learning using Mixture of Expert Large Language models for the German language.
+                                        Minhash-based Deduplication Pipelines for Large Language Model Pretraining.
+
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Experience 2 -->
+                            <div class="timeline-item relative pl-16">
+                                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center">
+                                    <i class="fas fa-briefcase text-[rgb(74,89,70)]"></i>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-5">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h3 class="font-bold text-gray-800">MITACS Globalink Research Intern</h3>
+                                            <p class="text-[rgb(74,89,70)]">National Research Council, Canada</p>
+                                        </div>
+                                        <span class="bg-[rgb(218,228,216)] text-[rgb(74,89,70)] text-xs px-2 py-1 rounded-full">2024 - 2025</span>
+                                    </div>
+                                    <p class="text-gray-600 mt-2">
+                                        World's first experimentally validated RL control of a hydrogen-blend process with sixfold computational speed improvements through edge AI inference, which has led to a peer reviewed publication.
+                                        Presented a novel end-to-end deep learning approach that combines offline system modeling with online fine-tuning for precise control.                                     
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Experience 3 -->
+                            <div class="timeline-item relative pl-16">
+                                <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center">
+                                    <i class="fas fa-briefcase text-[rgb(74,89,70)]"></i>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-5">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h3 class="font-bold text-gray-800">Junior Research Fellow</h3>
+                                            <p class="text-[rgb(74,89,70)]">University of Alberta</p>
+                                        </div>
+                                        <span class="bg-[rgb(218,228,216)] text-[rgb(74,89,70)] text-xs px-2 py-1 rounded-full">2023 - 2023</span>
+                                    </div>
+                                    <p class="text-gray-600 mt-2">
+                                        Deep learning-based Model Predictive Control (MPC) for hydrogen-diesel engines using Recurrent Neural Networks.
+                                        Real-time embedded controller implementation with acados on a Raspberry Pi using LSTM and GRU nodes with signal processing.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mt-12 mb-6">Education</h3>
+                        
+                        <div class="timeline-item relative pl-16">
+                            <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-[rgb(74,89,70)]"></i>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-5">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">MSc in Robotic Systems Engineering</h3>
+                                        <p class="text-[rgb(74,89,70)]">RWTH Aachen</p>
+                                    </div>
+                                    <span class="bg-[rgb(218,228,216)] text-[rgb(74,89,70)] text-xs px-2 py-1 rounded-full">2021 - 2025</span>
+                                </div>
+                                <p class="text-gray-600 mt-2">
+                                    Specialized in Machine Learning with Learning-based Control 
+                                    Thesis on "Safe Reinforcement Learningßbased conntol for Hydrogen Dualßfuel engines" received distinction.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Awards Tab -->
+            <div id="awards" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-card">
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">My Awards</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Award 1 -->
+                            <div class="relative bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                <div class="award-badge">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center mb-4">
+                                    <i class="fas fa-medal text-[rgb(74,89,70)] text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2">Best of Class Award 2024</h3>
+                                <p class="text-gray-600 text-sm mb-3">RWTH International Academy</p>
+                                <p class="text-gray-500 text-sm">
+                                    Recognized for best CGPA amongst the students enrolled in Robotic Systems Engineering
+                                </p>
+                            </div>
+                            
+                            <!-- Award 2 -->
+                            <div class="relative bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                <div class="award-badge">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center mb-4">
+                                    <i class="fas fa-star text-[rgb(74,89,70)] text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2">Dean's List</h3>
+                                <p class="text-gray-600 text-sm mb-3">RWTH Aachen</p>
+                                <p class="text-gray-500 text-sm">
+                                    Top 5% students at RWTH Aachen.
+                                </p>
+                            </div>
+                            
+                            <!-- Award 3 -->
+                            <div class="relative bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                <div class="award-badge">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center mb-4">
+                                    <i class="fas fa-lightbulb text-[rgb(74,89,70)] text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2">NRC-MITACS-RWTH Globalink Research Award 2024</h3>
+                                <p class="text-gray-600 text-sm mb-3">National Research Council Canada</p>
+                                <p class="text-gray-500 text-sm">
+                                    
+                                </p>
+                            </div>
+                            
+                            <!-- Award 4 -->
+                            <div class="relative bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                <div class="award-badge">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center mb-4">
+                                    <i class="fas fa-code text-[rgb(74,89,70)] text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2">Junior Research Fellowship</h3>
+                                <p class="text-gray-600 text-sm mb-3">University of Alberta</p>
+                                <p class="text-gray-500 text-sm">
+                                    Awarded for work on Deep Learning-based Model Predictive Control.
+                                </p>
+                            </div>
+                             
+                            <!-- Award 5 -->
+                            <div class="relative bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                <div class="award-badge">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center mb-4">
+                                    <i class="fas fa-users text-[rgb(74,89,70)] text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2">Social Responsibility Award 2023</h3>
+                                <p class="text-gray-600 text-sm mb-3">RWTH International Academy</p>
+                                <p class="text-gray-500 text-sm">
+                                    Awarded for social engagement during my Masters.
+                                </p>
+                            </div>
+
+                            <div class="relative bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                <div class="award-badge">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[rgb(218,228,216)] flex items-center justify-center mb-4">
+                                    <i class="fas fa-users text-[rgb(74,89,70)] text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2">University of Alberta Research Experience Fellowship, 2023</h3>
+                                <p class="text-gray-600 text-sm mb-3">University of Alberta</p>
+                                <p class="text-gray-500 text-sm">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projects Tab -->
+            <div id="projects" class="tab-content hidden">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800">My Projects</h2>
+                    <div class="relative">
+                        <input type="text" placeholder="Search projects..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(74,89,70)] focus:border-[rgb(74,89,70)]">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project Card 1 -->
+                    <div class="project-card animate-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="h-48 bg-gradient-to-r from-[rgb(74,89,70)] to-[rgb(143,174,140)] flex items-center justify-center">
+                            <i class="fas fa-shopping-cart text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Safe Reinforcement Learning</h3>
+                                                                        <span class="inline-block bg-[rgb(218,228,216)] text-[rgb(74,89,70)] text-xs px-2 py-1 rounded-full mt-1">Tensorflow</span>
+                                                                        <span class="inline-block bg-[rgb(218,228,216)] text-[rgb(74,89,70)] text-xs px-2 py-1 rounded-full mt-1">Raylib</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="text-gray-400 hover:text-[rgb(74,89,70)]"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-[rgb(74,89,70)]"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-3">Safe Reinforcement Learning (RL) for real-time control of a hydrogen dual-fuel engine using FPGA-based pressure sensing</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">React</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Node.js</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 2 -->
+                    <div class="project-card animate-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="h-48 bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Fitness Tracker App</h3>
+                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1">Mobile Apps</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-3">A cross-platform mobile application that tracks workouts, nutrition, and progress with beautiful visualizations.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">React Native</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Firebase</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Redux</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 3 -->
+                    <div class="project-card animate-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="h-48 bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
+                            <i class="fas fa-paint-brush text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Design System</h3>
+                                    <span class="inline-block bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded-full mt-1">UI/UX Design</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="text-gray-400 hover:text-pink-600"><i class="fab fa-figma"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-pink-600"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-3">A comprehensive design system with reusable components, typography scales, and color palettes for consistent UI.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Figma</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Storybook</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Tab -->
+            <div id="contact" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden animate-card">
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Get In Touch</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                                <p class="text-gray-600 mb-6">
+                                    I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+                                </p>
+                                
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="bg-[rgb(218,228,216)] rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                            <i class="fas fa-map-marker-alt text-[rgb(74,89,70)]"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800">Location</h4>
+                                            <p class="text-gray-600">Aachen, Germany</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-[rgb(218,228,216)] rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                            <i class="fas fa-envelope text-[rgb(74,89,70)]"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800">Email</h4>
+                                            <p class="text-gray-600">vasu.sharma@rwth-aachen.de</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="bg-[rgb(218,228,216)] rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                            <i class="fas fa-phone text-[rgb(74,89,70)]"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800">Phone</h4>
+                                            <p class="text-gray-600">*</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                                <div class="mt-8">
+                                    <h4 class="font-bold text-gray-800 mb-3">Follow Me</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[rgb(218,228,216)] hover:text-[rgb(74,89,70)] transition-colors">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors">
+                                            <i class="fab fa-linkedin-in"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-blue-100 hover:text-blue-400 transition-colors">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-pink-100 hover:text-pink-600 transition-colors">
+                                            <i class="fab fa-dribbble"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-4">Send Me a Message</h3>
+                                <form class="space-y-4">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(74,89,70)] focus:border-[rgb(74,89,70)]">
+                                        </div>
+                                        <div>
+                                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(74,89,70)] focus:border-[rgb(74,89,70)]">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                        <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(74,89,70)] focus:border-[rgb(74,89,70)]">
+                                    </div>
+                                    <div>
+                                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                        <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(74,89,70)] focus:border-[rgb(74,89,70)]"></textarea>
+                                    </div>
+                                    <button type="submit" class="bg-[rgb(74,89,70)] text-white py-2 px-6 rounded-lg font-medium hover:bg-[rgb(54,69,50)] transition-colors">
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" class="form-control" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Your Name. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#">GitHub</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Twitter</a>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Simple smooth scrolling for anchor links
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('header a[href^="#"]');
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
             
-            for (const link of links) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop,
-                            behavior: 'smooth'
-                        });
+            // Show selected tab content
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Update active tab styling
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active-tab', 'text-[rgb(74,89,70)]');
+                button.classList.add('text-gray-600');
+            });
+            
+            // Add active class to clicked button
+            const clickedButton = document.querySelector(`button[onclick="showTab('${tabId}')"]`);
+            clickedButton.classList.add('active-tab', 'text-[rgb(74,89,70)]');
+            clickedButton.classList.remove('text-gray-600');
+            
+            // Animate cards when tab changes
+            animateCards();
+        }
+        
+        // Animate cards when they come into view
+        function animateCards() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
                 });
-            }
+            }, { threshold: 0.1 });
             
-            // Simple form submission handling
-            const form = document.querySelector('.contact-form');
-            
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! This is a demo form - no data has been sent.');
-                    form.reset();
-                });
-            }
+            document.querySelectorAll('.animate-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                observer.observe(card);
+            });
+        }
+        
+        // Initialize with about me shown
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('about');
         });
     </script>
 </body>
