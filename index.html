@@ -95,7 +95,7 @@
         <div class="p-6 flex flex-col items-center">
             <img src="./images/logo_vasu.png" alt="Profile" class="profile-img w-24 h-24 rounded-full mb-4">
             <h1 class="text-2xl font-bold text-[rgb(74,89,70)]">Vasu Sharma</h1>
-            <p class="text-gray-500 text-sm">Senior Controls Engineer | AI Enthusiast</p>
+            <p class="text-gray-500 text-sm"> I breathe and discover</p>
             
             <div class="flex space-x-4 mt-4">
                 <a href="#" class="text-gray-400 hover:text-[rgb(74,89,70)]"><i class="fab fa-github"></i></a>
@@ -151,13 +151,6 @@
                 </button>
             </div>
             
-            <div class="relative">
-                <div class="tab-indicator"></div>
-                <button onclick="showTab('contact')" class="tab-button w-full text-left py-3 px-6 flex items-center text-gray-600 hover:text-[rgb(74,89,70)] hover:bg-[rgb(218,228,216)] transition-colors">
-                    <i class="fas fa-envelope mr-3"></i> Contact
-                </button>
-            </div>
-        </nav>
         
     </div>
     
@@ -462,7 +455,7 @@
                     <!-- Project Card 1 -->
                     <div class="project-card animate-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                         <div class="h-48 bg-gradient-to-r from-[rgb(74,89,70)] to-[rgb(143,174,140)] flex items-center justify-center">
-                            <i class="fas fa-shopping-cart text-white text-6xl"></i>
+                            <i class="fas fa-shield-alt text-white text-6xl"></i>
                         </div>
                         <div class="p-6">
                             <div class="flex justify-between items-start">
@@ -485,57 +478,84 @@
                         </div>
                     </div>
                     
-                    <!-- Project Card 2 -->
+                    <!-- Project Card 1 -->
                     <div class="project-card animate-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="h-48 bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
-                            <i class="fas fa-mobile-alt text-white text-6xl"></i>
+                        <div class="h-48 bg-gradient-to-r from-[rgb(74,89,70)] to-[rgb(143,174,140)] flex items-center justify-center">
+                            <i class="fas fa-robot text-white text-6xl"></i>
                         </div>
                         <div class="p-6">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Fitness Tracker App</h3>
-                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1">Mobile Apps</span>
+                                    <h3 class="text-xl font-bold text-gray-800">Dual-Arm Teleoperation System</h3>
+                                    <span class="inline-block bg-[rgb(218,228,216)] text-[rgb(74,89,70)] text-xs px-2 py-1 rounded-full mt-1">Robotics & Control</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="text-gray-400 hover:text-[rgb(74,89,70)]"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-[rgb(74,89,70)]"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-3">Real-time teleoperation system for dual 6DOF robot arms with camera-based hand tracking and collision avoidance at 40-60Hz control frequency.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">ROS2</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">OpenCV</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">MediaPipe</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 2 -->
+                    <div class="project-card animate-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-eye text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">LLaVA-ORPO</h3>
+                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1">Vision Language Models</span>
                                 </div>
                                 <div class="flex space-x-2">
                                     <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-github"></i></a>
                                     <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
-                            <p class="text-gray-600 mt-3">A cross-platform mobile application that tracks workouts, nutrition, and progress with beautiful visualizations.</p>
+                            <p class="text-gray-600 mt-3">Aligning LLaVA-1.6 7B Vision Language Model with human preferences using ORPO method on RLAIF-V dataset for improved multimodal understanding.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">React Native</span>
-                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Firebase</span>
-                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Redux</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">PyTorch</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Transformers</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">QLoRA</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">PEFT</span>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Project Card 3 -->
                     <div class="project-card animate-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="h-48 bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
-                            <i class="fas fa-paint-brush text-white text-6xl"></i>
+                        <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
+                            <i class="fas fa-calculator text-white text-6xl"></i>
                         </div>
                         <div class="p-6">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Design System</h3>
-                                    <span class="inline-block bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded-full mt-1">UI/UX Design</span>
+                                    <h3 class="text-xl font-bold text-gray-800">Small Model Reinforced Tuning (SMaRT)</h3>
+                                    <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mt-1">Language Models</span>
                                 </div>
                                 <div class="flex space-x-2">
-                                    <a href="#" class="text-gray-400 hover:text-pink-600"><i class="fab fa-figma"></i></a>
-                                    <a href="#" class="text-gray-400 hover:text-pink-600"><i class="fas fa-external-link-alt"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-green-600"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-green-600"><i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
-                            <p class="text-gray-600 mt-3">A comprehensive design system with reusable components, typography scales, and color palettes for consistent UI.</p>
+                            <p class="text-gray-600 mt-3">Fine-tuning Causal Language Models for mathematical equation generation using two-stage SFT and GRPO training with custom reward functions.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Figma</span>
-                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Storybook</span>
-                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">CSS</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">TRL</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">GRPO</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">LoRA</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">Qwen</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             
             <!-- Contact Tab -->
             <div id="contact" class="tab-content hidden">
